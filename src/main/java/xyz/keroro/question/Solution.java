@@ -1,5 +1,10 @@
 package xyz.keroro.question;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.OptionalInt;
+
 /**
  * LeetCode
  * @author keroro
@@ -43,5 +48,20 @@ public class Solution {
     private int gcd(int a, int b) {
         // 辗转相除法得到长度的最大公约数
         return b == 0 ? a : gcd(b, a % b);
+    }
+
+    /**
+     * 1431. 拥有最多糖果的孩子
+     * @param candies candies
+     * @param extraCandies extraCandies
+     * @return res
+     */
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        List<Boolean> res = new ArrayList<>();
+        int max = Arrays.stream(candies).max().getAsInt();
+        for (int candy : candies) {
+            res.add(candy + extraCandies >= max);
+        }
+        return res;
     }
 }
