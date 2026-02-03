@@ -1,12 +1,18 @@
 package xyz.keroro.question;
 
 /**
- * 1768. 交替合并字符串
+ * LeetCode
  * @author keroro
  * @since 2026年02月03日 17:54
  */
 public class Solution {
 
+    /**
+     * 1768. 交替合并字符串
+     * @param word1 word1
+     * @param word2 word2
+     * @return res
+     */
     public static String mergeAlternately(String word1, String word2) {
         StringBuilder res = new StringBuilder();
         int l1 = word1.length(), l2 = word2.length();
@@ -21,5 +27,21 @@ public class Solution {
             i++;
         }
         return res.toString();
+    }
+
+    /**
+     * 1071. 字符串的最大公因子
+     * @param str1 str1
+     * @param str2 str2
+     * @return res
+     */
+    public String gcdOfStrings(String str1, String str2) {
+        // 先判断是否存在字符串的最大公因子
+        if (!(str1 + str2).equals(str2 + str1)) return "";
+        return str1.substring(0, gcd(str1.length(), str2.length()));
+    }
+    private int gcd(int a, int b) {
+        // 辗转相除法得到长度的最大公约数
+        return b == 0 ? a : gcd(b, a % b);
     }
 }
