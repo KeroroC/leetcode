@@ -64,4 +64,25 @@ public class Solution {
         }
         return res;
     }
+
+    /**
+     * 605. 种花问题
+     * @param flowerbed flowerbed
+     * @param n n
+     * @return res
+     */
+    public static boolean canPlaceFlowers(int[] flowerbed, int n) {
+        int total = 0;
+        int[] extend = new int[flowerbed.length + 2];
+        System.arraycopy(flowerbed, 0, extend, 1, flowerbed.length);
+        extend[0] = 0;
+        extend[extend.length - 1] = 0;
+        for (int i = 1; i < extend.length - 1; i++) {
+            if (extend[i] == 0 && extend[i - 1] == 0 && extend[i + 1] == 0) {
+                extend[i] = 1;
+                total++;
+            }
+        }
+        return total >= n;
+    }
 }

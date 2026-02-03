@@ -4,6 +4,6 @@ import xyz.keroro.question.Solution;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(2 % 4);
+        System.out.println(Solution.canPlaceFlowers(new int[]{0, 0,1,0,1}, 1));
     }
 }
