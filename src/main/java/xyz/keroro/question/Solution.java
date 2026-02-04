@@ -1,9 +1,6 @@
 package xyz.keroro.question;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.OptionalInt;
+import java.util.*;
 
 /**
  * LeetCode
@@ -84,5 +81,28 @@ public class Solution {
             }
         }
         return total >= n;
+    }
+
+    /**
+     * 345-反转字符串中的元音字母
+     * @param s s
+     * @return res
+     */
+    public static String reverseVowels(String s) {
+        Set<Character> set = Set.of('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U');
+        List<Integer> pos = new ArrayList<>();
+        List<Character> val = new ArrayList<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (set.contains(s.charAt(i))) {
+                pos.add(i);
+                val.add(s.charAt(i));
+            }
+        }
+
+        StringBuilder sb = new StringBuilder(s);
+        for (int i = pos.size() - 1; i >= 0; i--) {
+            sb.replace(pos.get(i), pos.get(i) + 1, String.valueOf(val.get(pos.size() - i - 1)));
+        }
+        return sb.toString();
     }
 }
