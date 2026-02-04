@@ -89,20 +89,30 @@ public class Solution {
      * @return res
      */
     public static String reverseVowels(String s) {
-        Set<Character> set = Set.of('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U');
-        List<Integer> pos = new ArrayList<>();
-        List<Character> val = new ArrayList<>();
-        for (int i = 0; i < s.length(); i++) {
-            if (set.contains(s.charAt(i))) {
-                pos.add(i);
-                val.add(s.charAt(i));
-            }
+        int l = 0; // 左指针
+        int r = s.length() - 1; // 右指针
+        // 将字符串 s 改成数组，方便交换字符
+        char[] chars = s.toCharArray();
+        // 所有元音字母，hash set 形式
+        Set<Character> vowels = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'));
+
+        while (l < r) {
+            // 从左向右找元音字母
+            while (l < s.length() && !vowels.contains(chars[l]))
+                l++;
+            // 从右向左找元音字母
+            while (r >= 0 && !vowels.contains(chars[r]))
+                r--;
+
+            // 双指针相遇，退出
+            if (l >= r) break;
+
+            // 交换
+            char temp = chars[l];
+            chars[l++] = chars[r];
+            chars[r--] = temp;
         }
 
-        StringBuilder sb = new StringBuilder(s);
-        for (int i = pos.size() - 1; i >= 0; i--) {
-            sb.replace(pos.get(i), pos.get(i) + 1, String.valueOf(val.get(pos.size() - i - 1)));
-        }
-        return sb.toString();
+        return new String(chars);
     }
 }
