@@ -115,4 +115,34 @@ public class Solution {
 
         return new String(chars);
     }
+
+    /**
+     * 151-反转字符串中的单词
+     * @param s s
+     * @return res
+     */
+    public static String reverseWords(String s) {
+        List<Integer> list = new ArrayList<>();
+        boolean same = false;
+        int index = 0;
+        s = s.trim();
+        while (index < s.length()) {
+            if (s.charAt(index) != ' ' && !same) {
+                same = true;
+                list.add(index++);
+            } else if (s.charAt(index) == ' ' && same) {
+                same = false;
+                list.add(index++);
+            } else {
+                index++;
+            }
+        }
+        list.add(s.length());
+        StringBuilder sb = new StringBuilder();
+        for (int i = list.size() - 2; i >= 0; i -= 2) {
+            sb.append(s, list.get(i), list.get(i + 1));
+            if (i != 0) sb.append(" ");
+        }
+        return sb.toString();
+    }
 }
