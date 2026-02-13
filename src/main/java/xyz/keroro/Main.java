@@ -4,6 +4,6 @@ import xyz.keroro.question.Solution;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(Solution.productExceptSelf(new int[]{1, 2, 3, 4}));
+        System.out.println(Solution.increasingTriplet(new int[]{9, 2, 9, 1, 5}));
     }
 }

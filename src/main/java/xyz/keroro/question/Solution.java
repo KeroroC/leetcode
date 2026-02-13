@@ -170,4 +170,35 @@ public class Solution {
 
         return res;
     }
+
+    /**
+     * 334-递增的三元子序列
+     * @param nums nums
+     * @return res
+     */
+    public static boolean increasingTriplet(int[] nums) {
+        int length = nums.length;
+        if (length < 3) {
+            return false;
+        }
+
+        int[] leftMin = new int[length];
+        leftMin[0] = nums[0];
+        for (int i = 1; i < length; i++) {
+            leftMin[i] = Math.min(leftMin[i - 1], nums[i]);
+        }
+
+        int[] rightMax = new int[length];
+        rightMax[length - 1] = nums[length - 1];
+        for (int i = length - 2; i >= 0; i--) {
+            rightMax[i] = Math.max(rightMax[i + 1], nums[i]);
+        }
+
+        for (int i = 1; i < length - 1; i++) {
+            if (leftMin[i] < nums[i] && nums[i] < rightMax[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
